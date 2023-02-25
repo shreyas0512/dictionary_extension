@@ -1,8 +1,8 @@
 {
-  "name": "api",
-  "displayName": "Api",
+  "name": "simplify",
+  "displayName": "Simplify",
   "version": "0.0.1",
-  "description": "testapis",
+  "description": "To simplify your space",
   "author": "shreyas",
   "scripts": {
     "dev": "plasmo dev",
@@ -11,9 +11,12 @@
   },
   "dependencies": {
     "@plasmohq/messaging": "^0.1.1",
+    "openai": "^3.1.0",
+    "openai-api": "^1.3.1",
     "plasmo": "0.65.0",
     "react": "18.2.0",
-    "react-dom": "18.2.0"
+    "react-dom": "18.2.0",
+    "react-loader-spinner": "^5.3.4"
   },
   "devDependencies": {
     "@plasmohq/prettier-plugin-sort-imports": "3.6.1",

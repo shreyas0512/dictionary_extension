@@ -30,16 +30,20 @@ chrome.runtime.onInstalled.addListener(function () {
     type: string
     text: string
   }
-  chrome.contextMenus.onClicked.addListener(function (info, tab) {
-    const dict = info.selectionText
-
-    
-    chrome.tabs.sendMessage(tab.id, {
-      type: "lookup",
-      text: dict
-    }as WikiMessage)
-
-    chrome.storage.sync.set({'dict1': dict});
-
-  })
+  chrome.contextMenus.onClicked.addListener(function(info, tab) {
+    const dict = info.selectionText;
   
+    chrome.storage.sync.set({ dict1: dict }, function() {
+      chrome.windows.create({
+        url: "popup.html",
+        type: "popup",
+        width: 400,
+        height: 600
+      }, function(popupWindow) {
+        chrome.tabs.query({ active: true, windowId: popupWindow.id }, function(tabs) {
+          const tabId = tabs[0].id;
+          chrome.tabs.sendMessage(tabId, { type: "lookup" });
+        });
+      });
+    });
+  });
